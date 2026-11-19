@@ -3,6 +3,7 @@ use std::sync::atomic::Ordering;
 
 use axum::http::HeaderValue;
 use codex_analytics::AppServerRpcTransport;
+use codex_features::Feature;
 use codex_login::default_client::SetOriginatorError;
 use codex_login::default_client::USER_AGENT_SUFFIX;
 use codex_login::default_client::get_codex_user_agent;
@@ -77,6 +78,13 @@ impl InitializeRequestProcessor {
         // with initialize-time mismatch rejection.
         let analytics_initialize_params = params.clone();
         let capabilities = params.capabilities.unwrap_or_default();
+        let remote_control_read_cancellation = capabilities.remote_control_read_cancellation
+            && session.origin == ConnectionOrigin::RemoteControl
+            && cfg!(any(target_os = "linux", target_os = "macos"))
+            && self
+                .config
+                .features
+                .enabled(Feature::RemoteControlReadBackpressure);
         let experimental_api_enabled = capabilities.experimental_api;
         let request_attestation = capabilities.request_attestation;
         let extensions = capabilities.extensions.as_ref();
@@ -214,6 +222,7 @@ impl InitializeRequestProcessor {
         let user_agent = get_codex_user_agent();
         let response = InitializeResponse {
             user_agent,
+            remote_control_read_cancellation,
             codex_home,
             platform_family: std::env::consts::FAMILY.to_string(),
             platform_os: std::env::consts::OS.to_string(),

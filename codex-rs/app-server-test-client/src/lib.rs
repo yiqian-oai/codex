@@ -1611,6 +1611,7 @@ impl CodexClient {
                     version: env!("CARGO_PKG_VERSION").to_string(),
                 },
                 capabilities: Some(InitializeCapabilities {
+                    remote_control_read_cancellation: false,
                     required_human_approval: false,
                     explicit_gateway_oauth: false,
                     experimental_api,

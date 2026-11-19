@@ -2923,6 +2923,7 @@ mod tests {
                     version: "0.1.0".to_string(),
                 },
                 capabilities: Some(v1::InitializeCapabilities {
+                    remote_control_read_cancellation: false,
                     required_human_approval: false,
                     explicit_gateway_oauth: false,
                     experimental_api: true,
@@ -3012,6 +3013,7 @@ mod tests {
                         version: "0.1.0".to_string(),
                     },
                     capabilities: Some(v1::InitializeCapabilities {
+                        remote_control_read_cancellation: false,
                         required_human_approval: false,
                         explicit_gateway_oauth: false,
                         experimental_api: true,

@@ -36,6 +36,7 @@ async fn incompatible_daemon_can_run_embedded_for_explicit_features() -> Result<
         std::fs::create_dir_all(socket.parent().unwrap())?;
         let listener = UnixListener::bind(socket.as_path())?;
         let initialize = InitializeResponse {
+            remote_control_read_cancellation: false,
             user_agent: "daemon-test/0.0.0".into(),
             codex_home: home.path().try_into()?,
             platform_family: std::env::consts::FAMILY.into(),

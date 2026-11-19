@@ -1312,6 +1312,9 @@
             "remote_control": {
               "type": "boolean"
             },
+            "remote_control_read_backpressure": {
+              "type": "boolean"
+            },
             "remote_models": {
               "type": "boolean"
             },
@@ -8678,6 +8681,9 @@
           "type": "boolean"
         },
         "remote_control": {
+          "type": "boolean"
+        },
+        "remote_control_read_backpressure": {
           "type": "boolean"
         },
         "remote_models": {

@@ -5,6 +5,10 @@ import type { AbsolutePathBuf } from "./AbsolutePathBuf";
 
 export type InitializeResponse = { userAgent: string,
 /**
+ * The server accepted remote-control history cancellation for this connection.
+ */
+remoteControlReadCancellation?: boolean,
+/**
  * Absolute path to the server's $CODEX_HOME directory.
  */
 codexHome: AbsolutePathBuf,

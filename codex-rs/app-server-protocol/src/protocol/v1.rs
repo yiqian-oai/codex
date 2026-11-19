@@ -44,6 +44,9 @@ pub struct ClientInfo {
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Default, JsonSchema, TS)]
 #[serde(rename_all = "camelCase")]
 pub struct InitializeCapabilities {
+    /// Accept cancellation of a partially delivered remote-control history response.
+    #[serde(default, skip_serializing_if = "std::ops::Not::not")]
+    pub remote_control_read_cancellation: bool,
     /// Present `humanCommand` approvals to a person and return only a one-time decision.
     /// Requires `experimentalApi`. Pending requests can be replayed to compatible clients.
     #[serde(default, skip_serializing_if = "std::ops::Not::not")]
@@ -77,6 +80,9 @@ pub struct InitializeCapabilities {
 #[serde(rename_all = "camelCase")]
 pub struct InitializeResponse {
     pub user_agent: String,
+    /// The server accepted remote-control history cancellation for this connection.
+    #[serde(default, skip_serializing_if = "std::ops::Not::not")]
+    pub remote_control_read_cancellation: bool,
     /// Absolute path to the server's $CODEX_HOME directory.
     pub codex_home: AbsolutePathBuf,
     /// Platform family for the running app-server target, for example

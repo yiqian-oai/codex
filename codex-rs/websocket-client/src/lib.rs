@@ -283,6 +283,22 @@ impl WebSocketConnection {
         self.routing_affinity.as_ref()
     }
 
+    /// Retain the direct TCP socket for read-only send-queue inspection.
+    #[cfg(unix)]
+    pub fn direct_tcp_socket(&self) -> std::io::Result<Option<std::os::fd::OwnedFd>> {
+        use std::os::fd::AsFd;
+
+        let Some(Either::Left(stream)) = self.inner.as_ref() else {
+            return Ok(None);
+        };
+        let tcp = match stream.get_ref() {
+            MaybeTlsStream::Plain(tcp) => tcp,
+            MaybeTlsStream::Rustls(tls) => tls.get_ref().0,
+            _ => return Ok(None),
+        };
+        tcp.as_fd().try_clone_to_owned().map(Some)
+    }
+
     fn poll_policy(
         &mut self,
         context: &mut Context<'_>,

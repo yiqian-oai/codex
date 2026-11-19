@@ -1845,6 +1845,10 @@
             "null"
           ]
         },
+        "remoteControlReadCancellation": {
+          "description": "Accept cancellation of a partially delivered remote-control history response.",
+          "type": "boolean"
+        },
         "requestAttestation": {
           "default": false,
           "description": "Opt into `attestation/generate` requests for upstream `x-oai-attestation`.",

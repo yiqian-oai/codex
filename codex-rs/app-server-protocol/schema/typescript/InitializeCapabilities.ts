@@ -8,6 +8,10 @@ import type { JsonValue } from "./serde_json/JsonValue";
  */
 export type InitializeCapabilities = {
 /**
+ * Accept cancellation of a partially delivered remote-control history response.
+ */
+remoteControlReadCancellation?: boolean,
+/**
  * Present `humanCommand` approvals to a person and return only a one-time decision.
  * Requires `experimentalApi`. Pending requests can be replayed to compatible clients.
  */

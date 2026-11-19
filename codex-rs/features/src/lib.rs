@@ -582,6 +582,8 @@ pub enum Feature {
     CollaborationModes,
     /// Removed compatibility flag for the deleted remote control feature.
     RemoteControl,
+    /// Allow negotiated cancellation and backpressure for remote-control history reads.
+    RemoteControlReadBackpressure,
     /// Removed compatibility flag retained as a no-op so old wrappers can
     /// still pass `--enable image_detail_original`.
     ImageDetailOriginal,
@@ -2427,6 +2429,12 @@ pub const FEATURES: &[FeatureSpec] = &[
         id: Feature::RemoteControl,
         key: "remote_control",
         stage: Stage::Removed,
+        default_enabled: false,
+    },
+    FeatureSpec {
+        id: Feature::RemoteControlReadBackpressure,
+        key: "remote_control_read_backpressure",
+        stage: Stage::UnderDevelopment,
         default_enabled: false,
     },
     FeatureSpec {

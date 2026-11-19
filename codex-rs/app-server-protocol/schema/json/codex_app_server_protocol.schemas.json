@@ -3553,6 +3553,10 @@
             "null"
           ]
         },
+        "remoteControlReadCancellation": {
+          "description": "Accept cancellation of a partially delivered remote-control history response.",
+          "type": "boolean"
+        },
         "requestAttestation": {
           "default": false,
           "description": "Opt into `attestation/generate` requests for upstream `x-oai-attestation`.",
@@ -3606,6 +3610,10 @@
         "platformOs": {
           "description": "Operating system for the running app-server target, for example `\"macos\"`, `\"linux\"`, or `\"windows\"`.",
           "type": "string"
+        },
+        "remoteControlReadCancellation": {
+          "description": "The server accepted remote-control history cancellation for this connection.",
+          "type": "boolean"
         },
         "userAgent": {
           "type": "string"

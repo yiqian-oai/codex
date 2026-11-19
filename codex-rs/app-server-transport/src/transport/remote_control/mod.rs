@@ -9,6 +9,7 @@ mod desired_state;
 mod enroll;
 mod host_device;
 mod protocol;
+mod read_backpressure;
 mod segment;
 mod server_api;
 mod websocket;

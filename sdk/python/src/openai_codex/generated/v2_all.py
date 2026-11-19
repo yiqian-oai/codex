@@ -2276,6 +2276,13 @@ class InitializeCapabilities(BaseModel):
             description="Exact notification method names that should be suppressed for this connection (for example `thread/started`).",
         ),
     ] = None
+    remote_control_read_cancellation: Annotated[
+        bool | None,
+        Field(
+            alias="remoteControlReadCancellation",
+            description="Accept cancellation of a partially delivered remote-control history response.",
+        ),
+    ] = None
     request_attestation: Annotated[
         bool | None,
         Field(
